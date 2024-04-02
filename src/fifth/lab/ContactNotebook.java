@@ -1,9 +1,7 @@
 package fifth.lab;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.Date;
 
 public class ContactNotebook {
     private String name;
@@ -48,8 +46,8 @@ class SortedByTime implements Comparator<ContactNotebook> {
 
     @Override
     public int compare(ContactNotebook o1, ContactNotebook o2) {
-        String str1 = ((ContactNotebook) o1).getTime();
-        String str2 = ((ContactNotebook) o2).getTime();
+        String str1 = o1.getTime();
+        String str2 = o2.getTime();
         return str1.compareTo(str2);
     }
 }
