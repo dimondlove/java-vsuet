@@ -1,30 +1,26 @@
 package sixth.lab;
 
 import java.time.LocalDate;
-import java.util.Comparator;
+import java.util.Scanner;
 
 public class ContactNotebook {
     private String name;
 
-    private String telephone;
-
     private LocalDate date;
+
+    private String telephone;
 
     private String time;
 
-    public ContactNotebook(String name, String telephone, LocalDate date, String time) {
+    public ContactNotebook(String name, LocalDate date, String telephone, String time) {
         this.name = name;
-        this.telephone = telephone;
         this.date = date;
+        this.telephone = telephone;
         this.time = time;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getTelephone() {
-        return telephone;
     }
 
     public LocalDate getDate() {
@@ -35,27 +31,27 @@ public class ContactNotebook {
         return time;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
     @Override
     public String toString() {
-        return "Имя: " + name + " Дата: " + date + " Время: " + time;
+        return "Имя: " + name + " Телефон: " + telephone + " Дата: " + date + " Время: " + time;
     }
-}
 
-class SortedByDate implements Comparator<ContactNotebook> {
+    public static ContactNotebook createNewContactNotebook(Scanner in) {
+        in.skip("\n");
+        System.out.println("Создание объекты класса ContactNotebook");
+        System.out.println("Введите имя");
+        String newName = in.nextLine();
+        LocalDate newDate = LocalDate.now();
+        System.out.println("Введите номер телефона");
+        String newTelephone = in.nextLine();
+        System.out.println("Введите время");
+        String newTime = in.nextLine();
 
-    @Override
-    public int compare(ContactNotebook o1, ContactNotebook o2) {
-        return o1.getDate().compareTo(o2.getDate());
-    }
-}
-
-class SortedByTime implements Comparator<ContactNotebook> {
-
-    @Override
-    public int compare(ContactNotebook o1, ContactNotebook o2) {
-        String str1 = o1.getTime();
-        String str2 = o2.getTime();
-        return str1.compareTo(str2);
+        return new ContactNotebook(newName, newDate, newTelephone, newTime);
     }
 }
 

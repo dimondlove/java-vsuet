@@ -1,28 +1,65 @@
 package sixth.lab;
 
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class ExampleContactNotebook {
     public static void main(String[] args) {
-        ContactNotebook[] contactNotebooks = new ContactNotebook[4];
-        contactNotebooks[0] = new ContactNotebook("Ванёк Холод", LocalDate.of(2018, 9, 1), "23:45");
-        contactNotebooks[1] = new ContactNotebook("Вова Башня", LocalDate.of(2019, 3, 13), "09:57");
-        contactNotebooks[2] = new ContactNotebook("Пухляш", LocalDate.of(2017, 2, 20), "14:39");
-        contactNotebooks[3] = new ContactNotebook("Петрифишер", LocalDate.of(2010, 9, 10), "02:28");
+        Compar compar = new Compar();
 
-        System.out.println("\n======== Без сортировки ========");
-        for (ContactNotebook contactNotebook : contactNotebooks)
-            System.out.println(contactNotebook);
+        compar.add(new ContactNotebook("Ванёк Холод", LocalDate.of(2018, 9, 1), "+79530072437", "23:45"));
+        compar.add(new ContactNotebook("Вова Башня", LocalDate.of(2019, 3, 13), "+79582742148", "09:57"));
+        compar.add(new ContactNotebook("Пухляш", LocalDate.of(2017, 2, 20), "+79016195419","14:39"));
+        compar.add(new ContactNotebook("Петрифишер", LocalDate.of(2010, 9, 10), "+79012368188", "02:28"));
 
-        System.out.println("\n======== Сортировка по дате ========");
-        Arrays.sort(contactNotebooks, new SortedByDate());
-        for (ContactNotebook contactNotebook : contactNotebooks)
-            System.out.println(contactNotebook);
+        Scanner in = new Scanner(System.in).useDelimiter("\n");
+        showMenu();
 
-        System.out.println("\n======== Сортировка по времени ========");
-        Arrays.sort(contactNotebooks, new SortedByTime());
-        for (ContactNotebook contactNotebook : contactNotebooks)
-            System.out.println(contactNotebook);
+        while (true) {
+            int menuItem = in.nextInt();
+            System.out.println(menuItem);
+
+            switch (menuItem) {
+                case 1:
+                    compar.show();
+                    break;
+                case 2:
+                    ContactNotebook contactNotebook = ContactNotebook.createNewContactNotebook(in);
+                    System.out.println("Новый контакт: " + contactNotebook);
+                    compar.add(contactNotebook);
+                    break;
+                case 3:
+                    compar.getItems().sort(new SortedByDate());
+                    break;
+                case 4:
+                    compar.getItems().sort(new SortedByTime());
+                    break;
+                case 5:
+                    //Сохранить контакты в файл
+                    break;
+                case 6:
+                    //Извлечь контакты из файла
+                    break;
+                case 7:
+                    System.out.println("Программа завершается");
+                    System.exit(0);
+                    break;
+                default:
+                    break;
+            }
+
+            showMenu();
+        }
+    }
+
+    public static void showMenu() {
+        System.out.println("\n");
+        System.out.println("1 - Вывести список контактов");
+        System.out.println("2 - Добавить новый контакт");
+        System.out.println("3 - Отсортировать список контактов по дате");
+        System.out.println("4 - Отсортировать список контактов по времени");
+        System.out.println("5 - Сохранить контакты");
+        System.out.println("6 - Загрузить контакты");
+        System.out.println("7 - Выйти");
     }
 }
