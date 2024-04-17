@@ -1,9 +1,13 @@
-package sixth.lab;
+package seventh.lab;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class ContactNotebook {
+public class ContactNotebook implements Serializable {
     private String name;
 
     private LocalDate date;
@@ -55,6 +59,14 @@ public class ContactNotebook {
         String newTime = in.nextLine();
 
         return new ContactNotebook(newName, newDate, newTelephone, newTime);
+    }
+
+    public void save(DataOutputStream out) throws IOException {
+
+    }
+
+    public ContactNotebook load(DataInputStream in) throws IOException {
+        return null;
     }
 }
 
