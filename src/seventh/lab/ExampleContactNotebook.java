@@ -2,11 +2,10 @@ package seventh.lab;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ExampleContactNotebook implements Serializable {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Compar compar = new Compar();
 
         compar.add(new ContactNotebook("Ванёк Холод", LocalDate.of(2018, 9, 1), "+79530072437", "23:45"));
@@ -37,11 +36,11 @@ public class ExampleContactNotebook implements Serializable {
                     compar.getItems().sort(new SortedByTime());
                     break;
                 case 5:
-                    saving(compar);
+                    compar.save();
                     break;
                 case 6:
                     compar.getItems().clear();
-                    loading(compar);
+                    compar.load();
                     compar.show();
                     break;
                 case 7:
@@ -67,7 +66,7 @@ public class ExampleContactNotebook implements Serializable {
         System.out.println("7 - Выйти");
     }
 
-    public static void saving(Compar compar) {
+    /*public static void saving(Compar compar) {
         DataOutputStream out = null;
         ObjectOutputStream out1 = null;
 
@@ -120,5 +119,5 @@ public class ExampleContactNotebook implements Serializable {
         }
 
         return compar;
-    }
+    }*/
 }

@@ -61,12 +61,12 @@ public class ContactNotebook implements Serializable {
         return new ContactNotebook(newName, newDate, newTelephone, newTime);
     }
 
-    public void save(DataOutputStream out) throws IOException {
+    /*public void save(DataOutputStream out) throws IOException {
 
     }
 
     public ContactNotebook load(DataInputStream in) throws IOException {
         return null;
-    }
+    }*/
 }
 
