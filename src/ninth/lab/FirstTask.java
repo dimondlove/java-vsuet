@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class FirstTask {
     public static void main(String[] args) {
-        int n = 0;
+        int n;
         Scanner sc1 = new Scanner(System.in);
         while (true) {
             System.out.println("Введите число строк");
